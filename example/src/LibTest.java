@@ -76,4 +76,9 @@ class LibTest {
         assertEquals(1, 1);
     }
     
+    @Test
+    void testIsUpWord() {
+        assertEquals(lib.isUpWord("AA2AAA"), false);
+        assertEquals(lib.isUpWord("AAAAA444"), true);
+    }
 }

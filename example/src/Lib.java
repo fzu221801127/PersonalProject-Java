@@ -24,10 +24,13 @@ public class Lib {
         setContentAndRowCountByFilename(this.inFilename);
         setCharCountByContent(this.content);
         setStrGroupByContent(this.content);
+        setWordGroupByStrGroup(this.strGroup);
+        
         System.out.println("characters:\n" + getCharCount());
         System.out.println("words:\n");
         System.out.println("lines:\n" + getRowCount());
         System.out.println("content:\n" + getContent());
+        
         System.out.println("strGroup:\n");
         for (String s : this.strGroup) {
             System.out.println(s);
@@ -59,9 +62,29 @@ public class Lib {
         this.charCount = content.length();
     }
     
-    /*通过文本内容content获取分割后的文本内容strGroup*/
+    /*通过文本内容content获取分割后的大写文本内容strGroup*/
     public void setStrGroupByContent(String content) {
-        this.strGroup = content.split("[^a-zA-Z0-9]");
+        String s = content.toUpperCase();
+        this.strGroup = s.split("[^a-zA-Z0-9]");
+    }
+    
+    public void setWordGroupByStrGroup(String[] strGroup) {
+        
+    }
+
+    /*判断一个字符串是否为大写单词*/
+    public boolean isUpWord(String s) {
+        char s1 = s.charAt(0);
+        char s2 = s.charAt(1);
+        char s3 = s.charAt(2);
+        char s4 = s.charAt(3);
+        if (s1 >= 'A' && s1 <= 'Z' && s2 >= 'A' && s2 <= 'Z' && s3 >= 'A' && s3 <= 'Z' && 
+                s4 >= 'A' && s4 <= 'Z')
+        {
+            return true;
+        }else {
+            return false;
+        }
     }
     
     public String getInfilename() {
