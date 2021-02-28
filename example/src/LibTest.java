@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 
 class LibTest {
     Lib lib = new Lib();
+    private String inputTestFile = "C:/Users/π»”Í/Desktop/input.txt";
+    private String outputTestFile = "C:/Users/π»”Í/Desktop/output.txt";
+    
     @BeforeEach
     void setUp() throws Exception {
         lib.clear();
@@ -15,8 +18,8 @@ class LibTest {
     @Test
     void testWordCountControl() throws IOException {
         lib.WordCountControl();
-        assertEquals(lib.getInfilename(), "C:/Users/π»”Í/Desktop/input.txt");
-        assertEquals(lib.getOutfilename(), "C:/Users/π»”Í/Desktop/output.txt");
+        assertEquals(lib.getInfilename(), inputTestFile);
+        assertEquals(lib.getOutfilename(), outputTestFile);
     }
 
     @Test
@@ -54,9 +57,16 @@ class LibTest {
     
     @Test
     void testGetContentByFilename() throws IOException {
-        lib.getContentByFilename("C:/Users/π»”Í/Desktop/input.txt");
-        assertEquals(lib.getRowCount(), 3);
-        assertEquals(lib.getContent(), "sss bbb\n\naaa\n");
+        lib.getContentByFilename(inputTestFile);
+        assertEquals(lib.getRowCount(), 2);
+        assertEquals(lib.getContent(), "sss bbb\n    \naaa\n");
     }
+    
+//    @Test
+//    void testSetCharCount() throws IOException {
+//        lib.getContentByFilename(inputTestFile);
+//        lib.setCharCount();
+//        assertEquals(lib.getCharCount(), 16);
+//    }
     
 }

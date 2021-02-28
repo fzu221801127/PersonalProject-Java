@@ -20,6 +20,10 @@ public class Lib {
         inFilename = "C:/Users/谷雨/Desktop/input.txt";
         outFilename = "C:/Users/谷雨/Desktop/output.txt";
         getContentByFilename(inFilename);
+//        setCharCount();
+        System.out.println("lines:\n" + getRowCount());
+//        System.out.println("characters:\n" + getCharCount());
+        System.out.println("content:\n" + getContent());
     }
     
     /*通过文件路径获取文件文本内容并传入content中并得出文本行数rowCount*/
@@ -31,10 +35,10 @@ public class Lib {
         while((s = br.readLine()) != null) {
                 content += s; 
                 content += "\n";
-                rowCount ++;
+                if (!s.replaceAll(" ", "").isEmpty()) {
+                    rowCount ++;
+                }
         }
-        System.out.println(getRowCount());
-        System.out.println(getContent());
     }
     
     public String getInfilename() {
@@ -64,4 +68,9 @@ public class Lib {
         this.rowCount = 0;
         this.charCount = 0;
     }
+    
+//    public void setCharCount() {
+//        this.charCount = this.content.length() - 1;
+//    }
+    
 }
