@@ -19,15 +19,15 @@ public class Lib {
         
         inFilename = "C:/Users/谷雨/Desktop/input.txt";
         outFilename = "C:/Users/谷雨/Desktop/output.txt";
-        setContentAndRowCountByFilename(inFilename);
-        setCharCount(this.content.length());
+        setContentAndRowCountByFilename(this.inFilename);
+        setCharCountByContent(this.content);
         System.out.println("characters:\n" + getCharCount());
         System.out.println("words:\n");
         System.out.println("lines:\n" + getRowCount());
         System.out.println("content:\n" + getContent());
     }
     
-    /*通过文件路径获取文件文本内容并传入content中并得出文本行数rowCount*/
+    /*通过文件路径获取1.文件文本内容content;2.文本行数rowCount;*/
     public void setContentAndRowCountByFilename(String filename) throws IOException {
         FileReader fr = new FileReader(filename);
         BufferedReader br = new BufferedReader(fr);
@@ -47,8 +47,9 @@ public class Lib {
         }
     }
     
-    public void setCharCount(int x) {
-        this.charCount = x;
+    
+    public void setCharCountByContent(String content) {
+        this.charCount = content.length();
     }
     
     public String getInfilename() {

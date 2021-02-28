@@ -65,7 +65,7 @@ class LibTest {
     @Test
     void testSetCharCount() throws IOException {
         lib.setContentAndRowCountByFilename(inputTestFile);
-        lib.setCharCount(lib.getContent().length());
+        lib.setCharCountByContent(lib.getContent());
         assertEquals(lib.getCharCount(), 35);
     }
     
