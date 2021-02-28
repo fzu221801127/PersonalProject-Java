@@ -33,15 +33,15 @@ public class Lib {
         this.setAmountWordByWordGroup(this.wordGroup);
         this.setWordCountByAmountWord(this.getAmountWord());
         
-        System.out.println("characters:\n" + getCharCount());
-        System.out.println("words:\n" + getWordCount());
-        System.out.println("lines:\n" + getRowCount());
-        System.out.println("content:\n" + getContent());
+        System.out.println("characters:" + getCharCount());
+        System.out.println("words:" + getWordCount());
+        System.out.println("lines:" + getRowCount());
+//        System.out.println("content:" + getContent());
         
-        System.out.println("strGroup:");
-        for (String s : this.strGroup) {
-            System.out.println(s);
-        }
+//        System.out.println("strGroup:");
+//        for (String s : this.strGroup) {
+//            System.out.println(s);
+//        }
         System.out.println("wrodGroup:");
         for (String s : this.wordGroup) {
             System.out.println(s);
@@ -172,6 +172,35 @@ public class Lib {
         this.strGroup = null;
         this.wordGroup = null;
         this.amountWord = null;
+    }
+    
+    public class ByValueComparator implements Comparator<String> {
+        HashMap<String, Integer> hashmap;
+        public ByValueComparator(HashMap<String, Integer> hm) {
+            this.hashmap = hm;
+        }
+
+        @Override
+        public int compare(String str1, String str2) {
+            // TODO Auto-generated method stub
+            if(!hashmap.containsKey(str1) || !hashmap.containsKey(str2)) {
+                return 0;
+            }
+            if(hashmap.get(str1) < hashmap.get(str2)) {
+                return 1;
+            } 
+            else if(hashmap.get(str1) == hashmap.get(str2)) {
+                if (str1.compareTo(str2) == 1) {
+                    return 1;
+                } 
+                else {
+                    return -1;
+                }
+            } 
+            else {
+                return -1;
+            }
+        }
     }
     
 }

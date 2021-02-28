@@ -2,6 +2,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -106,9 +107,10 @@ class LibTest {
     
     @Test
     void testSetStrGroupByContent() throws IOException {
-        lib.setContentAndRowCountByFilename(inputTestFile);
-        lib.setStrGroupByContent(lib.getContent());
-        assertEquals(1, 1);
+        String content = "123\n456";
+        lib.setStrGroupByContent(content);
+        assertEquals(lib.getStrGroup().get(0), "123");
+        assertEquals(lib.getStrGroup().get(1), "456");
     }
     
     @Test
@@ -145,5 +147,14 @@ class LibTest {
         assertEquals(lib.getAmountWord().containsKey("DDDSA21"), true);
         assertEquals(lib.getAmountWord().get("AAAAA2222"), 2);
     }
+    
+//    @Test
+//    void testByValueComparator() throws IOException {
+//        HashMap<String, Integer> hashmap = new HashMap<String, Integer>();
+//        hashmap.put("AAAAA", 2);
+//        hashmap.put("BBBBB", 2);
+//        hashmap.put("CCCCC", 5);
+//        hashmap.put("DDDDD", 1);
+//    }
     
 }
