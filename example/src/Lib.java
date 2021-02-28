@@ -20,9 +20,9 @@ public class Lib {
         inFilename = "C:/Users/谷雨/Desktop/input.txt";
         outFilename = "C:/Users/谷雨/Desktop/output.txt";
         getContentByFilename(inFilename);
-//        setCharCount();
+        setCharCount();
         System.out.println("lines:\n" + getRowCount());
-//        System.out.println("characters:\n" + getCharCount());
+        System.out.println("characters:\n" + getCharCount());
         System.out.println("content:\n" + getContent());
     }
     
@@ -69,8 +69,9 @@ public class Lib {
         this.charCount = 0;
     }
     
-//    public void setCharCount() {
-//        this.charCount = this.content.length() - 1;
-//    }
+    //通过字符串content得到文本字符数charCount
+    public void setCharCount() {
+        this.charCount = this.content.length();
+    }
     
 }
