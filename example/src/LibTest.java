@@ -59,6 +59,11 @@ class LibTest {
     }
     
     @Test
+    void testGetAmountWord() {
+        assertEquals(lib.getAmountWord(), null);
+    }
+    
+    @Test
     void testMain() throws IOException {
         WordCount wordcount = new WordCount();
         String[] args = null;
@@ -99,10 +104,27 @@ class LibTest {
         strGroup.add("AAAAA2222");
         strGroup.add("B2FSFG");
         strGroup.add("DDDSA21");
+        strGroup.add("AAAAA2222");
         lib.setWordGroupByStrGroup(strGroup);
         ArrayList<String> array = lib.getWordGroup();
         assertEquals(array.get(0).equals("AAAAA2222"), true);
         assertEquals(array.get(1).equals("DDDSA21"), true);
+        assertEquals(array.get(2).equals("AAAAA2222"), true);
+    }
+    
+    @Test
+    void testSetAmountWordByWordGroup() throws IOException {
+        ArrayList<String> strGroup = new ArrayList<String>();
+        strGroup.add("AAAAA2222");
+        strGroup.add("B2FSFG");
+        strGroup.add("DDDSA21");
+        strGroup.add("AAAAA2222");
+        lib.setWordGroupByStrGroup(strGroup);
+        ArrayList<String> wordGroup = lib.getWordGroup();
+        lib.setAmountWordByWordGroup(wordGroup);
+        assertEquals(lib.getAmountWord().containsKey("AAAAA2222"), true);
+        assertEquals(lib.getAmountWord().containsKey("DDDSA21"), true);
+        assertEquals(lib.getAmountWord().get("AAAAA2222"), 2);
     }
     
 }

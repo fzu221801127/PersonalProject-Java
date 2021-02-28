@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Lib {
@@ -11,6 +12,7 @@ public class Lib {
     private String content = "";
     private ArrayList<String> strGroup;
     private ArrayList<String> wordGroup;
+    private HashMap<String,Integer> amountWord;
     private int rowCount = 0;
     private int charCount = 0;
     
@@ -26,6 +28,7 @@ public class Lib {
         setCharCountByContent(this.content);
         setStrGroupByContent(this.content);
         setWordGroupByStrGroup(this.strGroup);
+        setAmountWordByWordGroup(this.wordGroup);
         
         System.out.println("characters:\n" + getCharCount());
         System.out.println("words:\n");
@@ -40,6 +43,7 @@ public class Lib {
         for (String s : this.wordGroup) {
             System.out.println(s);
         }
+        
     }
     
     /*通过文件路径获取1.文件文本内容content;2.文本行数rowCount;*/
@@ -86,7 +90,19 @@ public class Lib {
             }
         }
     }
-
+    
+    /*把单词集合wordGroup的每个单词作为key,出现次数作为value存到amoutWord里面*/
+    public void setAmountWordByWordGroup(ArrayList<String> wordGroup) {
+        this.amountWord = new HashMap<String,Integer>();
+        for (String string : wordGroup) {
+            if(!amountWord.containsKey(string)){
+                amountWord.put(string,1);
+            }else{
+                amountWord.put(string, amountWord.get(string).intValue()+1);
+            }
+        }
+    }
+    
     /*判断一个字符串是否为大写单词*/
     public boolean isUpWord(String s) {
         if (s.length() >= 4) {
@@ -134,6 +150,10 @@ public class Lib {
         return this.wordGroup;
     }
     
+    public HashMap<String,Integer> getAmountWord(){
+        return this.amountWord;
+    }
+    
     public void clear() {
         this.inFilename = null;
         this.outFilename = null;
@@ -142,6 +162,7 @@ public class Lib {
         this.charCount = 0;
         this.strGroup = null;
         this.wordGroup = null;
+        this.amountWord = null;
     }
     
 }
