@@ -57,16 +57,16 @@ class LibTest {
     
     @Test
     void testGetContentByFilename() throws IOException {
-        lib.setContentByFilename(inputTestFile);
+        lib.setContentAndRowCountByFilename(inputTestFile);
         assertEquals(lib.getRowCount(), 2);
-        assertEquals(lib.getContent(), "sss bbb\n    \naaa\n\n");
+        assertEquals(lib.getContent(), "ssss111 bbb222\n    \naaaa333,ccccc\n\n");
     }
     
     @Test
     void testSetCharCount() throws IOException {
-        lib.setContentByFilename(inputTestFile);
-        lib.setCharCount();
-        assertEquals(lib.getCharCount(), 18);
+        lib.setContentAndRowCountByFilename(inputTestFile);
+        lib.setCharCount(lib.getContent().length());
+        assertEquals(lib.getCharCount(), 35);
     }
     
 }
