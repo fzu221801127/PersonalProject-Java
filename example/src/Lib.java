@@ -19,15 +19,16 @@ public class Lib {
         
         inFilename = "C:/Users/谷雨/Desktop/input.txt";
         outFilename = "C:/Users/谷雨/Desktop/output.txt";
-        getContentByFilename(inFilename);
+        setContentByFilename(inFilename);
         setCharCount();
-        System.out.println("lines:\n" + getRowCount());
         System.out.println("characters:\n" + getCharCount());
+        System.out.println("words:\n");
+        System.out.println("lines:\n" + getRowCount());
         System.out.println("content:\n" + getContent());
     }
     
     /*通过文件路径获取文件文本内容并传入content中并得出文本行数rowCount*/
-    public void getContentByFilename(String filename) throws IOException {
+    public void setContentByFilename(String filename) throws IOException {
         FileReader fr = new FileReader(filename);
         BufferedReader br = new BufferedReader(fr);
         String s;
