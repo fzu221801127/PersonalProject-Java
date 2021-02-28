@@ -14,6 +14,8 @@ public class Lib {
     private ArrayList<String> strGroup;
     private ArrayList<String> wordGroup;
     private HashMap<String,Integer> amountWord;
+    private HashMap<String,Integer> amountWord2;
+    private ArrayList<String> tenWord;
     private int rowCount = 0;
     private int charCount = 0;
     private int wordCount = 0;
@@ -32,20 +34,29 @@ public class Lib {
         this.setWordGroupByStrGroup(this.strGroup);
         this.setAmountWordByWordGroup(this.wordGroup);
         this.setWordCountByAmountWord(this.getAmountWord());
+        this.setTenWordByAmountWord(this.amountWord);
         
         System.out.println("characters:" + getCharCount());
         System.out.println("words:" + getWordCount());
         System.out.println("lines:" + getRowCount());
+        for (String s : this.tenWord) {
+            System.out.println(s+":"+this.amountWord2.get(s));
+        }
+//        System.out.println("------------------------------");
+//        for (String s : this.amountWord2.keySet()) {
+//            System.out.println(s+":"+this.amountWord2.get(s));
+//        }
+        
 //        System.out.println("content:" + getContent());
         
 //        System.out.println("strGroup:");
 //        for (String s : this.strGroup) {
 //            System.out.println(s);
 //        }
-        System.out.println("wrodGroup:");
-        for (String s : this.wordGroup) {
-            System.out.println(s);
-        }
+//        System.out.println("wrodGroup:");
+//        for (String s : this.wordGroup) {
+//            System.out.println(s);
+//        }
         
     }
     
@@ -97,6 +108,7 @@ public class Lib {
     /*把单词集合wordGroup的每个单词作为key,出现次数作为value存到amoutWord里面*/
     public void setAmountWordByWordGroup(ArrayList<String> wordGroup) {
         this.amountWord = new HashMap<String,Integer>();
+        this.amountWord2 = new HashMap<String,Integer>();
         for (String string : wordGroup) {
             if(!amountWord.containsKey(string)){
                 amountWord.put(string,1);
@@ -104,10 +116,71 @@ public class Lib {
                 amountWord.put(string, amountWord.get(string).intValue()+1);
             }
         }
+        for (String string : wordGroup) {
+            if(!amountWord2.containsKey(string)){
+                amountWord2.put(string,1);
+            }else{
+                amountWord2.put(string, amountWord2.get(string).intValue()+1);
+            }
+        }
     }
     
     public void setWordCountByAmountWord(HashMap<String,Integer> amountWord) {
         this.wordCount = amountWord.size();
+    }
+    
+    public void setTenWordByAmountWord(HashMap<String,Integer> amountWord) {
+        this.tenWord = new ArrayList<String>();
+        String maxWord = "";
+        if (amountWord.size() >= 10) {
+            for (int i = 0; i < 10; i++) {
+                for (String s : amountWord.keySet()) {
+                     if (maxWord.isEmpty()) {
+                         maxWord = s;
+                     }
+                     else {
+                         if (amountWord.get(maxWord) < amountWord.get(s)) {
+                             maxWord = s;
+                         }
+                         else if (amountWord.get(maxWord) > amountWord.get(s)) {}
+                         else if (amountWord.get(maxWord) == amountWord.get(s)){
+                             if (maxWord.compareTo(s) > 0) {
+                                 maxWord = s;
+                             }
+                             else {}
+                         }
+                     }
+                }
+                amountWord.remove(maxWord);
+                this.tenWord.add(maxWord);
+                maxWord = "";
+            }
+        }
+        else {
+            int size = amountWord.size();
+            for (int i = 0; i < size; i++) {
+                for (String s : amountWord.keySet()) {
+                    if (maxWord.isEmpty()) {
+                        maxWord = s;
+                    }
+                    else {
+                        if (amountWord.get(maxWord) < amountWord.get(s)) {
+                            maxWord = s;
+                        }
+                        else if (amountWord.get(maxWord) > amountWord.get(s)) {}
+                        else if (amountWord.get(maxWord) == amountWord.get(s)){
+                            if (maxWord.compareTo(s) > 0) {
+                                maxWord = s;
+                            }
+                            else {}
+                        }
+                    }
+               }
+               amountWord.remove(maxWord);
+               this.tenWord.add(maxWord);
+               maxWord = "";
+            }
+        }
     }
     
     /*判断一个字符串是否为大写单词*/
@@ -161,46 +234,28 @@ public class Lib {
         return this.wordGroup;
     }
     
+    public ArrayList<String> getTenWord(){
+        return this.tenWord;
+    }
+    
     public HashMap<String,Integer> getAmountWord(){
         return this.amountWord;
     }
     
+    public HashMap<String,Integer> getAmountWord2(){
+        return this.amountWord2;
+    }
+    
     public void clear() {
         this.content = "";
+        this.wordCount = 0;
         this.rowCount = 0;
         this.charCount = 0;
         this.strGroup = null;
         this.wordGroup = null;
         this.amountWord = null;
+        this.amountWord2 = null;
+        this.tenWord = null;
     }
-    
-    public class ByValueComparator implements Comparator<String> {
-        HashMap<String, Integer> hashmap;
-        public ByValueComparator(HashMap<String, Integer> hm) {
-            this.hashmap = hm;
-        }
-
-        @Override
-        public int compare(String str1, String str2) {
-            // TODO Auto-generated method stub
-            if(!hashmap.containsKey(str1) || !hashmap.containsKey(str2)) {
-                return 0;
-            }
-            if(hashmap.get(str1) < hashmap.get(str2)) {
-                return 1;
-            } 
-            else if(hashmap.get(str1) == hashmap.get(str2)) {
-                if (str1.compareTo(str2) == 1) {
-                    return 1;
-                } 
-                else {
-                    return -1;
-                }
-            } 
-            else {
-                return -1;
-            }
-        }
-    }
-    
+       
 }
