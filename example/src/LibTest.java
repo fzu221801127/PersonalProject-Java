@@ -49,6 +49,11 @@ class LibTest {
     }
     
     @Test
+    void testGetWordCount() {
+        assertEquals(lib.getWordCount(), 0);
+    }
+    
+    @Test
     void testGetStrGroup() {
         assertEquals(lib.getStrGroup(), null);
     }
@@ -83,6 +88,20 @@ class LibTest {
         lib.setContentAndRowCountByFilename(inputTestFile);
         lib.setCharCountByContent(lib.getContent());
         assertEquals(lib.getCharCount(), 35);
+    }
+    
+    @Test
+    void testSetWordCount() throws IOException {
+        ArrayList<String> strGroup = new ArrayList<String>();
+        strGroup.add("AAAAA2222");
+        strGroup.add("B2FSFG");
+        strGroup.add("DDDSA21");
+        strGroup.add("AAAAA2222");
+        lib.setWordGroupByStrGroup(strGroup);
+        ArrayList<String> wordGroup = lib.getWordGroup();
+        lib.setAmountWordByWordGroup(wordGroup);
+        lib.setWordCountByAmountWord(lib.getAmountWord());
+        assertEquals(lib.getWordCount(), 2);
     }
     
     @Test

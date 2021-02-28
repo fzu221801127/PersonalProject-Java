@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -15,6 +16,7 @@ public class Lib {
     private HashMap<String,Integer> amountWord;
     private int rowCount = 0;
     private int charCount = 0;
+    private int wordCount = 0;
     
     /*集中控制各函数实现题目需求*/
     public void WordCountControl() throws IOException {
@@ -22,16 +24,17 @@ public class Lib {
 //        System.out.println("请输入命令:");
 //        String str = in.next();
         
-        inFilename = "C:/Users/谷雨/Desktop/input.txt";
-        outFilename = "C:/Users/谷雨/Desktop/output.txt";
-        setContentAndRowCountByFilename(this.inFilename);
-        setCharCountByContent(this.content);
-        setStrGroupByContent(this.content);
-        setWordGroupByStrGroup(this.strGroup);
-        setAmountWordByWordGroup(this.wordGroup);
+        this.inFilename = "C:/Users/谷雨/Desktop/input.txt";
+        this.outFilename = "C:/Users/谷雨/Desktop/output.txt";
+        this.setContentAndRowCountByFilename(this.inFilename);
+        this.setCharCountByContent(this.content);
+        this.setStrGroupByContent(this.content);
+        this.setWordGroupByStrGroup(this.strGroup);
+        this.setAmountWordByWordGroup(this.wordGroup);
+        this.setWordCountByAmountWord(this.getAmountWord());
         
         System.out.println("characters:\n" + getCharCount());
-        System.out.println("words:\n");
+        System.out.println("words:\n" + getWordCount());
         System.out.println("lines:\n" + getRowCount());
         System.out.println("content:\n" + getContent());
         
@@ -103,6 +106,10 @@ public class Lib {
         }
     }
     
+    public void setWordCountByAmountWord(HashMap<String,Integer> amountWord) {
+        this.wordCount = amountWord.size();
+    }
+    
     /*判断一个字符串是否为大写单词*/
     public boolean isUpWord(String s) {
         if (s.length() >= 4) {
@@ -142,6 +149,10 @@ public class Lib {
         return this.charCount;
     }
     
+    public int getWordCount() {
+        return this.wordCount;
+    }
+    
     public ArrayList<String> getStrGroup() {
         return this.strGroup;
     }
@@ -155,8 +166,6 @@ public class Lib {
     }
     
     public void clear() {
-        this.inFilename = null;
-        this.outFilename = null;
         this.content = "";
         this.rowCount = 0;
         this.charCount = 0;
