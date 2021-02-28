@@ -2,14 +2,15 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Lib {
     private String inFilename;
     private String outFilename;
     private String content = "";
-    private String[] strGroup;
-    private String[] wordGroup;
+    private ArrayList<String> strGroup;
+    private ArrayList<String> wordGroup;
     private int rowCount = 0;
     private int charCount = 0;
     
@@ -31,8 +32,12 @@ public class Lib {
         System.out.println("lines:\n" + getRowCount());
         System.out.println("content:\n" + getContent());
         
-        System.out.println("strGroup:\n");
+        System.out.println("strGroup:");
         for (String s : this.strGroup) {
+            System.out.println(s);
+        }
+        System.out.println("wrodGroup:");
+        for (String s : this.wordGroup) {
             System.out.println(s);
         }
     }
@@ -64,25 +69,39 @@ public class Lib {
     
     /*通过文本内容content获取分割后的大写文本内容strGroup*/
     public void setStrGroupByContent(String content) {
+        this.strGroup = new ArrayList<String>();
         String s = content.toUpperCase();
-        this.strGroup = s.split("[^a-zA-Z0-9]");
+        String[] ss = s.split("[^a-zA-Z0-9]");
+        for (String str : ss) {
+            this.strGroup.add(str);
+        }
     }
     
-    public void setWordGroupByStrGroup(String[] strGroup) {
-        
+    /*通过分割后的大写文本内容strGroup获取大写单词集合wordGroup*/
+    public void setWordGroupByStrGroup(ArrayList<String> strGroup) {
+        this.wordGroup = new ArrayList<String>();
+        for(String s : strGroup) {
+            if (isUpWord(s)) {
+                this.wordGroup.add(s);
+            }
+        }
     }
 
     /*判断一个字符串是否为大写单词*/
     public boolean isUpWord(String s) {
-        char s1 = s.charAt(0);
-        char s2 = s.charAt(1);
-        char s3 = s.charAt(2);
-        char s4 = s.charAt(3);
-        if (s1 >= 'A' && s1 <= 'Z' && s2 >= 'A' && s2 <= 'Z' && s3 >= 'A' && s3 <= 'Z' && 
-                s4 >= 'A' && s4 <= 'Z')
-        {
-            return true;
-        }else {
+        if (s.length() >= 4) {
+            char s1 = s.charAt(0);
+            char s2 = s.charAt(1);
+            char s3 = s.charAt(2);
+            char s4 = s.charAt(3);
+            if (s1 >= 'A' && s1 <= 'Z' && s2 >= 'A' && s2 <= 'Z' && s3 >= 'A' && s3 <= 'Z' && 
+                    s4 >= 'A' && s4 <= 'Z')
+            {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
             return false;
         }
     }
@@ -107,12 +126,22 @@ public class Lib {
         return this.charCount;
     }
     
+    public ArrayList<String> getStrGroup() {
+        return this.strGroup;
+    }
+    
+    public ArrayList<String> getWordGroup(){
+        return this.wordGroup;
+    }
+    
     public void clear() {
         this.inFilename = null;
         this.outFilename = null;
         this.content = "";
         this.rowCount = 0;
         this.charCount = 0;
+        this.strGroup = null;
+        this.wordGroup = null;
     }
     
 }

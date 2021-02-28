@@ -1,6 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -48,6 +49,16 @@ class LibTest {
     }
     
     @Test
+    void testGetStrGroup() {
+        assertEquals(lib.getStrGroup(), null);
+    }
+    
+    @Test
+    void testGetWordGroup() {
+        assertEquals(lib.getWordGroup(), null);
+    }
+    
+    @Test
     void testMain() throws IOException {
         WordCount wordcount = new WordCount();
         String[] args = null;
@@ -56,7 +67,7 @@ class LibTest {
     }
     
     @Test
-    void testGetContentByFilename() throws IOException {
+    void testSetContentAndRowCountByFilename() throws IOException {
         lib.setContentAndRowCountByFilename(inputTestFile);
         assertEquals(lib.getRowCount(), 2);
         assertEquals(lib.getContent(), "ssss111 bbb222\n    \naaaa333,ccccc\n\n");
@@ -81,4 +92,17 @@ class LibTest {
         assertEquals(lib.isUpWord("AA2AAA"), false);
         assertEquals(lib.isUpWord("AAAAA444"), true);
     }
+    
+    @Test
+    void testSetWordGroupByStrGroup() throws IOException {
+        ArrayList<String> strGroup = new ArrayList<String>();
+        strGroup.add("AAAAA2222");
+        strGroup.add("B2FSFG");
+        strGroup.add("DDDSA21");
+        lib.setWordGroupByStrGroup(strGroup);
+        ArrayList<String> array = lib.getWordGroup();
+        assertEquals(array.get(0).equals("AAAAA2222"), true);
+        assertEquals(array.get(1).equals("DDDSA21"), true);
+    }
+    
 }
