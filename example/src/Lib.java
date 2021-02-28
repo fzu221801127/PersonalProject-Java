@@ -32,10 +32,15 @@ public class Lib {
         FileReader fr = new FileReader(filename);
         BufferedReader br = new BufferedReader(fr);
         String s;
-        /*读出每一行存入content中并rowCount++*/
+        
+        /*读出每一行先去除中文再存入content中并决定是否需要rowCount++,这边题意看不太明白，我理解为中文不计入字符数即中文不算统计行数
+                         时的非空白字符,即纯中文不算行。 */
         while((s = br.readLine()) != null) {
+                //从s中去除非ascii字符
+                s = s.replaceAll("[^\\x0A\\x0D\\x20-\\x7E]", "");
                 content += s; 
                 content += "\n";
+                
                 if (!s.replaceAll(" ", "").isEmpty()) {
                     rowCount ++;
                 }
