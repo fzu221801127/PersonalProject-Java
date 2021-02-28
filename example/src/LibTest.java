@@ -9,13 +9,14 @@ class LibTest {
     Lib lib = new Lib();
     @BeforeEach
     void setUp() throws Exception {
+        lib.clear();
     }
 
     @Test
     void testWordCountControl() throws IOException {
         lib.WordCountControl();
-        assertEquals(lib.getInfilename(), "C:/Users/π»”Í/Desktop/new 1.txt");
-        assertEquals(lib.getOutfilename(), "C:/Users/π»”Í/Desktop/new 2.txt");
+        assertEquals(lib.getInfilename(), "C:/Users/π»”Í/Desktop/input.txt");
+        assertEquals(lib.getOutfilename(), "C:/Users/π»”Í/Desktop/output.txt");
     }
 
     @Test
@@ -30,7 +31,7 @@ class LibTest {
 
     @Test
     void testGetContent() {
-        assertEquals(lib.getContent(), null);
+        assertEquals(lib.getContent(), "");
     }
 
     @Test
@@ -50,5 +51,12 @@ class LibTest {
         WordCount.main(args);
         assertEquals(1, 1);
     }
-
+    
+    @Test
+    void testGetContentByFilename() throws IOException {
+        lib.getContentByFilename("C:/Users/π»”Í/Desktop/input.txt");
+        assertEquals(lib.getRowCount(), 3);
+        assertEquals(lib.getContent(), "sss bbb\n\naaa\n");
+    }
+    
 }

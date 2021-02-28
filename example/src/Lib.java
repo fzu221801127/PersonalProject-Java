@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Lib {
     private String inFilename;
     private String outFilename;
-    private String content;
+    private String content = "";
     private int rowCount = 0;
     private int charCount = 0;
     
@@ -17,22 +17,25 @@ public class Lib {
 //        System.out.println("请输入命令:");
 //        String str = in.next();
         
-        inFilename = "C:/Users/谷雨/Desktop/new 1.txt";
-        outFilename = "C:/Users/谷雨/Desktop/new 2.txt";
-//        getContentByFilename(inFilename);
+        inFilename = "C:/Users/谷雨/Desktop/input.txt";
+        outFilename = "C:/Users/谷雨/Desktop/output.txt";
+        getContentByFilename(inFilename);
     }
     
     /*通过文件路径获取文件文本内容并传入content中并得出文本行数rowCount*/
-//    public void getContentByFilename(String filename) throws IOException {
-//        FileReader fr = new FileReader(filename);
-//        BufferedReader br = new BufferedReader(fr);
-//        String s;
-//        /*读出每一行存入content中并rowCount++*/
-//        while((s = br.readLine()) != null) {
-//                content += s; 
-//                rowCount ++;
-//        }
-//    }
+    public void getContentByFilename(String filename) throws IOException {
+        FileReader fr = new FileReader(filename);
+        BufferedReader br = new BufferedReader(fr);
+        String s;
+        /*读出每一行存入content中并rowCount++*/
+        while((s = br.readLine()) != null) {
+                content += s; 
+                content += "\n";
+                rowCount ++;
+        }
+        System.out.println(getRowCount());
+        System.out.println(getContent());
+    }
     
     public String getInfilename() {
         return this.inFilename;
@@ -54,4 +57,11 @@ public class Lib {
         return this.charCount;
     }
     
+    public void clear() {
+        this.inFilename = null;
+        this.outFilename = null;
+        this.content = "";
+        this.rowCount = 0;
+        this.charCount = 0;
+    }
 }
