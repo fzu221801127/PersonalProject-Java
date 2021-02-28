@@ -8,6 +8,8 @@ public class Lib {
     private String inFilename;
     private String outFilename;
     private String content = "";
+    private String[] strGroup;
+    private String[] wordGroup;
     private int rowCount = 0;
     private int charCount = 0;
     
@@ -21,10 +23,15 @@ public class Lib {
         outFilename = "C:/Users/谷雨/Desktop/output.txt";
         setContentAndRowCountByFilename(this.inFilename);
         setCharCountByContent(this.content);
+        setStrGroupByContent(this.content);
         System.out.println("characters:\n" + getCharCount());
         System.out.println("words:\n");
         System.out.println("lines:\n" + getRowCount());
         System.out.println("content:\n" + getContent());
+        System.out.println("strGroup:\n");
+        for (String s : this.strGroup) {
+            System.out.println(s);
+        }
     }
     
     /*通过文件路径获取1.文件文本内容content;2.文本行数rowCount;*/
@@ -47,9 +54,14 @@ public class Lib {
         }
     }
     
-    
+    /*通过文本内容content获取字符数CharCount*/
     public void setCharCountByContent(String content) {
         this.charCount = content.length();
+    }
+    
+    /*通过文本内容content获取分割后的文本内容strGroup*/
+    public void setStrGroupByContent(String content) {
+        this.strGroup = content.split("[^a-zA-Z0-9]");
     }
     
     public String getInfilename() {
@@ -79,10 +91,5 @@ public class Lib {
         this.rowCount = 0;
         this.charCount = 0;
     }
-    
-    
-//    public String[] separateContent(String content) {
-//        String[] 
-//    }
     
 }

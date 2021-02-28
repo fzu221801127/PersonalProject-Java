@@ -69,4 +69,11 @@ class LibTest {
         assertEquals(lib.getCharCount(), 35);
     }
     
+    @Test
+    void testSetStrGroupByContent() throws IOException {
+        lib.setContentAndRowCountByFilename(inputTestFile);
+        lib.setStrGroupByContent(lib.getContent());
+        assertEquals(1, 1);
+    }
+    
 }
