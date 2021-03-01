@@ -17,12 +17,12 @@ class LibTest {
         lib.clear();
     }
 
-    @Test
-    void testWordCountControl() throws IOException {
-        lib.WordCountControl();
-        assertEquals(lib.getInfilename(), inputTestFile);
-        assertEquals(lib.getOutfilename(), outputTestFile);
-    }
+//    @Test
+//    void testWordCountControl() throws IOException {
+//        lib.WordCountControl();
+//        assertEquals(lib.getInfilename(), inputTestFile);
+//        assertEquals(lib.getOutfilename(), outputTestFile);
+//    }
 
     @Test
     void testGetInfilename() {

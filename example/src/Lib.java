@@ -25,12 +25,14 @@ public class Lib {
     
     /*集中控制各函数实现题目需求*/
     public void WordCountControl() throws IOException {
-//        Scanner in = new Scanner(System.in);
-//        System.out.println("请输入命令:");
-//        String str = in.next();
+        Scanner in = new Scanner(System.in);
+        System.out.println("请输入input文件路径:");
+        this.inFilename = in.next();
+        System.out.println("请输入output文件路径:");
+        this.outFilename = in.next();
         
-        this.inFilename = "C:/Users/谷雨/Desktop/input.txt";
-        this.outFilename = "C:/Users/谷雨/Desktop/output.txt";
+        //this.inFilename = "C:/Users/谷雨/Desktop/input.txt";
+        //this.outFilename = "C:/Users/谷雨/Desktop/output.txt";
         this.setContentAndRowCountByFilename(this.inFilename);
         this.setCharCountByContent(this.content);
         this.setStrGroupByContent(this.content);
@@ -50,21 +52,6 @@ public class Lib {
         for (String s : this.tenWord) {
             System.out.println(s.toLowerCase()+":"+this.amountWord2.get(s));
         }
-//        System.out.println("------------------------------");
-//        for (String s : this.amountWord2.keySet()) {
-//            System.out.println(s+":"+this.amountWord2.get(s));
-//        }
-        
-//        System.out.println("content:" + getContent());
-        
-//        System.out.println("strGroup:");
-//        for (String s : this.strGroup) {
-//            System.out.println(s);
-//        }
-//        System.out.println("wrodGroup:");
-//        for (String s : this.wordGroup) {
-//            System.out.println(s);
-//        }
         
     }
     
@@ -268,9 +255,6 @@ public class Lib {
        
     public void outputTofile (String filename, String data, ArrayList<String> data2) throws IOException {
         File file = new File(filename);
-        if(!file.exists()){
-            file.createNewFile();
-        }
         FileWriter fileWritter = new FileWriter(file.getAbsoluteFile());
         BufferedWriter bw = new BufferedWriter(fileWritter);
         bw.write(data);
