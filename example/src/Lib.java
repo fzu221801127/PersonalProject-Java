@@ -1,6 +1,9 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -36,11 +39,16 @@ public class Lib {
         this.setWordCountByAmountWord(this.getAmountWord());
         this.setTenWordByAmountWord(this.amountWord);
         
+        String temporaryData1 = "characters:" + getCharCount() + "\n" + "words:" + getWordCount() + "\n" +
+                "lines:" + getRowCount() + "\n";
+        ArrayList<String> temporaryData2 = this.tenWord;
+        this.outputTofile(this.outFilename, temporaryData1, temporaryData2);
+        
         System.out.println("characters:" + getCharCount());
         System.out.println("words:" + getWordCount());
         System.out.println("lines:" + getRowCount());
         for (String s : this.tenWord) {
-            System.out.println(s+":"+this.amountWord2.get(s));
+            System.out.println(s.toLowerCase()+":"+this.amountWord2.get(s));
         }
 //        System.out.println("------------------------------");
 //        for (String s : this.amountWord2.keySet()) {
@@ -258,4 +266,19 @@ public class Lib {
         this.tenWord = null;
     }
        
+    public void outputTofile (String filename, String data, ArrayList<String> data2) throws IOException {
+        File file = new File(filename);
+        if(!file.exists()){
+            file.createNewFile();
+        }
+        FileWriter fileWritter = new FileWriter(file.getAbsoluteFile());
+        BufferedWriter bw = new BufferedWriter(fileWritter);
+        bw.write(data);
+        for (String s : data2) {
+            bw.write(s.toLowerCase()+":"+this.amountWord2.get(s)+"\n");
+        }
+        bw.close();
+        System.out.println("Output to " + filename + " success");
+    }
+    
 }

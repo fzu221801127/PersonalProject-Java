@@ -158,13 +158,18 @@ class LibTest {
         assertEquals(lib.getAmountWord().get("AAAAA2222"), 2);
     }
     
-//    @Test
-//    void testByValueComparator() throws IOException {
-//        HashMap<String, Integer> hashmap = new HashMap<String, Integer>();
-//        hashmap.put("AAAAA", 2);
-//        hashmap.put("BBBBB", 2);
-//        hashmap.put("CCCCC", 5);
-//        hashmap.put("DDDDD", 1);
-//    }
+    @Test
+    void testSetTenWordByAmountWord() throws IOException {
+        HashMap<String,Integer> amountWord = new HashMap<String,Integer>();
+        amountWord.put("AAAAAA", 5);
+        amountWord.put("BBBBBB", 5);
+        amountWord.put("CCCCCC", 5);
+        amountWord.put("ASDFSA", 3);
+        amountWord.put("SDAFSAGS", 8);
+        amountWord.put("UEWWG", 1);
+        amountWord.put("DSDSAA", 4);
+        lib.setTenWordByAmountWord(amountWord);
+        assertEquals(1, 1);
+    }
     
 }
