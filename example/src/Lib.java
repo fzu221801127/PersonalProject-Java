@@ -26,10 +26,24 @@ public class Lib {
     /*集中控制各函数实现题目需求*/
     public void WordCountControl() throws IOException {
         Scanner in = new Scanner(System.in);
+        
         System.out.println("请输入input文件路径:");
         this.inFilename = in.next();
+        File f1 = new File(this.inFilename);
+        while (!f1.exists()) {
+            System.out.println("找不到路径为 " + this.inFilename + " 的文件,请重新输入input文件路径:");
+            this.inFilename = in.next();
+            f1 = new File(this.inFilename);
+        }
+        
         System.out.println("请输入output文件路径:");
         this.outFilename = in.next();
+        File f2 = new File(this.outFilename);
+        while (!f2.exists()) {
+            System.out.println("找不到路径为 " + this.outFilename + " 的文件,请重新输入output文件路径:");
+            this.outFilename = in.next();
+            f2 = new File(this.outFilename);
+        }
         
         //this.inFilename = "C:/Users/谷雨/Desktop/input.txt";
         //this.outFilename = "C:/Users/谷雨/Desktop/output.txt";
