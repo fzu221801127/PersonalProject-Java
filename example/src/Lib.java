@@ -138,6 +138,7 @@ public class Lib {
         this.wordCount = amountWord.size();
     }
     
+    /*获取词频最高的十个单词*/
     public void setTenWordByAmountWord(HashMap<String,Integer> amountWord) {
         this.tenWord = new ArrayList<String>();
         String maxWord = "";
