@@ -171,6 +171,22 @@ class LibTest {
         amountWord.put("DSDSAA", 4);
         lib.setTenWordByAmountWord(amountWord);
         assertEquals(1, 1);
+        
+        HashMap<String,Integer> amountWord2 = new HashMap<String,Integer>();
+        amountWord2.put("AAAAAA", 8);
+        amountWord2.put("BBBBBB", 8);
+        amountWord2.put("CCCCCC", 8);
+        amountWord2.put("EEEEEE", 8);
+        amountWord2.put("FFFFFF", 8);
+        amountWord2.put("DDDDDD", 8);
+        amountWord2.put("DSDSAA", 4);
+        amountWord2.put("HDFHDSHD", 2);
+        amountWord2.put("FGSGDGDSHD", 8);
+        amountWord2.put("HJTDDFSHD", 10);
+        amountWord2.put("HMNEEB", 10);
+        amountWord2.put("HUYTR", 4);
+        amountWord2.put("WEFGICSN", 3);
+        lib.setTenWordByAmountWord(amountWord2);
     }
     
 
