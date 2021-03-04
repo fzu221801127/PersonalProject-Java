@@ -89,7 +89,7 @@ public class Lib {
     
     /*通过文本内容content获取字符数CharCount*/
     public void setCharCountByContent(String content) {
-        this.charCount = content.length();
+        this.charCount = content.length() - 1;
     }
     
     /*通过文本内容content获取分割后的大写文本内容strGroup*/
